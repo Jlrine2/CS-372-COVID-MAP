@@ -14,7 +14,7 @@ export class MarkerService {
       for (const c of res.features) {
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
-        const marker = L.circleMarker([lon, lat], { radius: 6, color: '#FF1515'}).addTo(map);
+        const marker = L.circleMarker([lon, lat], { radius: 6, color: '#ff1515'}).addTo(map);
       }
     });
   }
