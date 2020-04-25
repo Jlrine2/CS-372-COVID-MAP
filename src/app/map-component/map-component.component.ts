@@ -2,7 +2,6 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { icon, Marker} from 'leaflet';
 import { MarkerService } from '../services/marker.service';
-import { DataService} from '../services/data.service';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -34,13 +33,12 @@ export class MapComponentComponent implements AfterViewInit {
     });
   }
 
-  constructor(private  markerService: MarkerService, private dataService: DataService) {
+  constructor(private  markerService: MarkerService) {
   }
 
   ngAfterViewInit(): void {
     this.initMap();
     this.markerService.makeCapitalMarkers(this.map);
-    this.dataService.getData();
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
