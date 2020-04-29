@@ -8,7 +8,7 @@ import * as L from 'leaflet';
 })
 export class MarkerService {
   capitals: string = '/assets/capitals.geojson';
-  private data: {};
+  private data;
   private metresPerPixel: number;
   constructor(private http: HttpClient, private dataService: DataService) {
   }
@@ -18,8 +18,8 @@ export class MarkerService {
       for (const c of res.features) {
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
-        console.log(this.data[c.properties.state]);
-        const marker = L.circle([lon, lat], { radius: (this.data[c.properties.state]), color: '#ff1515'}).addTo(map);
+        console.log(this.data);
+        const marker = L.circle([lon, lat], { radius: this.data[c.properties.state], color: '#ff1515'}).addTo(map);
       }
     });
   }
