@@ -41,22 +41,17 @@ export class MarkerService {
     }
   }
   getColor(d) {
-    return d > 120000 ? '#800026' :
-           d > 8000  ? '#BD0026' :
-           d > 4000  ? '#E31A1C' :
-           d > 2000  ? '#FC4E2A' :
+    return d > 200000 ? '#800026' :
+           d > 100000  ? '#BD0026' :
+           d > 50000  ? '#E31A1C' :
+           d > 1000 ? '#FC4E2A' :
            d > 800   ? '#FD8D3C' :
            d > 400   ? '#FEB24C' :
            d > 200   ? '#FED976' :
-                      '#FFEDA0';
+           d > 0     ?  '#FFEDA0':
+                      '#aaaaaa';
   }
   style(feature) {
-    console.log(this);
-    console.log(feature);
-    console.log(feature.properties.abbreviation)
-    console.log("disease amount");
-    console.log(this.data.get(feature.properties.abbreviation))
-    console.log(this.data)
     return {
         fillColor: this.getColor(this.data.get(feature.properties.abbreviation)),
         weight: 2,
