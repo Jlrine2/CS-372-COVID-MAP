@@ -49,12 +49,6 @@ export class MarkerService {
                       '#FFEDA0';
   }
   style(feature) {
-    console.log(this);
-    console.log(feature);
-    console.log(feature.properties.abbreviation);
-    console.log('disease amount');
-    console.log(this.data.get(feature.properties.abbreviation));
-    console.log(this.data);
     return {
         fillColor: this.getColor(this.data.get(feature.properties.abbreviation)),
         weight: 2,
