@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { MapComponentComponent } from './map-component/map-component.component';
 import {MarkerService} from './services/marker.service';
 import {HttpClientModule} from '@angular/common/http';
+import {PopUpService} from './services/pop-up.service';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    MarkerService
+    MarkerService,
+    PopUpService
   ],
   bootstrap: [
     AppComponent

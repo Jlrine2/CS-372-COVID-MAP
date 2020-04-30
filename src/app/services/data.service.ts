@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SubscriptionLog} from 'rxjs/internal/testing/SubscriptionLog';
+
 
 
 @Injectable({
@@ -14,10 +14,10 @@ export class DataService {
   }
 
   getData() {
-    let data = new Map<string, string>();
+    const data = new Map<string, string>();
     this.http.get(this.apiUrl).subscribe((res: any) => {
       for (const r of res) {
-        data[r.state] = r.positive;
+        data.set(r.state, r.positive);
       }
     });
     return data;
