@@ -2,7 +2,6 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { icon, Marker} from 'leaflet';
 import { MarkerService } from '../services/marker.service';
-
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
@@ -43,6 +42,7 @@ export class MapComponentComponent implements AfterViewInit {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
+    
 
     tiles.addTo(this.map);
   }
