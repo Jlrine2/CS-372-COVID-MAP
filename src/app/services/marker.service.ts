@@ -25,7 +25,7 @@ export class MarkerService {
       for (const c of res.features) {
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
-        const circle = L.circle([lon, lat], { radius: 20000, color: '#ff1515'});
+        const circle = L.circle([lon, lat], { radius: 20000, color: '#333'});
         circle.bindPopup(this.popUpService.makeCapitalPopup(c, this.data));
         circle.addTo(map);
       }
