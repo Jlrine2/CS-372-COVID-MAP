@@ -19,14 +19,15 @@ export class MarkerService {
   state_covid: Array<Object>;
   makeCapitalMarkers(map: L.map): void {
     wait(500);
-    L.geoJson(statesData, {style: this.style}).addTo(map);
+    
     this.state_covid = [];
     this.http.get(this.capitals).subscribe((res: any) => {
+      L.geoJson(statesData, {style: this.style}).addTo(map);
       for (const c of res.features) {
         
         const lat = c.geometry.coordinates[0];
         const lon = c.geometry.coordinates[1];
-        const circle = L.circle([lon, lat], { radius: this.data.get(c.properties.state), color: '#ff1515'});
+        const circle = L.circle([lon, lat], { radius: 80000, color: '#ff1515'});
         circle.bindPopup(this.popUpService.makeCapitalPopup(c, this.data));
         circle.addTo(map);
       }
@@ -40,20 +41,24 @@ export class MarkerService {
     }
   }
   getColor(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
+    return d > 120000 ? '#800026' :
+           d > 8000  ? '#BD0026' :
+           d > 4000  ? '#E31A1C' :
+           d > 2000  ? '#FC4E2A' :
+           d > 800   ? '#FD8D3C' :
+           d > 400   ? '#FEB24C' :
+           d > 200   ? '#FED976' :
                       '#FFEDA0';
   }
   style(feature) {
     console.log(this);
     console.log(feature);
+    console.log(feature.properties.abbreviation)
+    console.log("disease amount");
+    console.log(this.data.get(feature.properties.abbreviation))
+    console.log(this.data)
     return {
-        fillColor: this.getColor(feature.properties.density),
+        fillColor: this.getColor(this.data.get(feature.properties.abbreviation)),
         weight: 2,
         opacity: 1,
         color: 'white',
