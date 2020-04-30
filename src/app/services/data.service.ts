@@ -14,7 +14,7 @@ export class DataService {
   }
 
   getData() {
-    let data = {};
+    let data = new Map<string, string>();
     this.http.get(this.apiUrl).subscribe((res: any) => {
       for (const r of res) {
         data[r.state] = r.positive;
