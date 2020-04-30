@@ -13,7 +13,7 @@ export class MarkerService {
   constructor(private http: HttpClient, private dataService: DataService, private popUpService: PopUpService) {}
   data = this.dataService.getData();
   makeCapitalMarkers(map: L.map): void {
-    wait(200);
+    wait(500);
     this.http.get(this.capitals).subscribe((res: any) => {
       for (const c of res.features) {
         const lat = c.geometry.coordinates[0];
