@@ -1,0 +1,7 @@
+{
+  "name": "CovMap_IONIC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
