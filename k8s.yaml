@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: covmap
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: covmap
+  
+  name: covmap
+  labels:
+    app: covmap
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: covmap
+  template:
+    metadata:
+      labels:
+        app: covmap
+    spec:
+      containers:
+      - name: covmap
+        image: jlrine2/covmap
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: covmap
+  name: covmap
+  labels:
+    app: covmap
+spec:
+  selector:
+    app: covmap
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
