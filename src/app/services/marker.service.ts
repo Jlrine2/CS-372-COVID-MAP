@@ -18,7 +18,7 @@ export class MarkerService {
   data = this.dataService.getData();
   stateCovid: Array<object>;
   makeCapitalMarkers(map: L.map): void {
-    wait(500);
+    wait(1000);
     this.stateCovid = [];
     this.http.get(this.capitals).subscribe((res: any) => {
       L.geoJson(statesData, {style: this.style}).addTo(map);
